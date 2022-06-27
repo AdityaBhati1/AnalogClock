@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)file:///C:/Users/oneal/Desktop/Analog%20Clock.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Analog Clock</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;900&family=Varela+Round&display=swap" rel="stylesheet">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html {
+    		position: relative;
+    		min-width: 1366px;
+   			min-height: 768px;
+    		height: 100vh;
+		}
+		body{
+			background: /*linear-gradient(130deg, #141e30, #243b55)*/#091921;
+			height: 100vh;
+			width: 100%;
+						overflow-y: hidden;	
+			position: absolute;
+		}
+		.Clock{
+			width: 420px;
+			height: 420px;
+			background: #091921;
+			border-radius: 50%;
+			position: relative;
+			margin: 0 auto;
+			padding: 15px;
+			margin-top: 43px;
+			border: 4px solid #091921;
+			box-shadow: 0 -20px 20px rgba(255, 255, 255,0.05),
+						inset 0 -20px 20px rgba(255, 255, 255,0.05),
+						 0 20px 20px rgba(0, 0, 0,0.05),
+						inset 0 20px 20px rgba(0, 0, 0,0.05);
+		}
+		.center-circle{
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			background: #464b4e;
+			border-radius: 50%;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			z-index: 13;
+			border: 5px solid #091921;
+		}
+		.num{
+			--rotation : 0;
+			width: 420px;
+			height: 420px;
+			position: absolute;
+			text-align: center;
+			font-family: 'M PLUS Rounded 1c', sans-serif;
+			color: rgb(130, 130, 130);
+			transform: rotate(var(--rotation));
+			font-size: 32px;
+			font-weight: 660;
+			border-radius: 50%;
+		}
+		 .num1{--rotation: 30deg;}
+		 .num2{--rotation: 60deg;}
+		 .num3{--rotation: 90deg;}
+		 .num4{--rotation: 120deg;}
+		 .num5{--rotation: 150deg;}
+		 .num6{--rotation: 180deg;}
+		 .num7{--rotation: 210deg;}
+		 .num8{--rotation: 240deg;}
+		 .num9{--rotation: 270deg;}
+		 .num10{--rotation: 300deg;}
+		 .num11{--rotation: 330deg;}
+
+		.hand{
+			position: absolute;
+			bottom: 50%;
+			left: 50%;
+			transform: translateX(-50%);
+			transform-origin: bottom;
+			border-top-left-radius: 30px;
+			border-top-right-radius: 30px;
+			z-index: 12;
+		}
+		.hand.sec{
+			width: 7px;
+			height: 42%;
+			background-color: #f47174;
+		}
+		.hand.min{
+			width: 14px;
+			height: 37%;
+			background-color: #4f4f4f;
+		}
+		.hand.hour{
+			--rotation: 0;
+			width: 21px;
+			height: 32%;
+			background-color: #2a2b2c;
+		}
+		button{
+  			background-color: transparent;
+  			border: 2px solid #f47174;
+  			border-radius: 0.6em;
+  			color: #f47174;
+  			font-size: 1rem;
+  			line-height: 1;
+  			margin: 20px;
+  			padding: 1.2em 2.8em;
+  			text-decoration: none;
+  			text-align: center;
+  			font-family: 'M PLUS Rounded 1c', sans-serif;
+  			font-weight: 700;
+  			transition: 0.6s;
+  			z-index: 60;
+		}
+		button:hover{
+		box-shadow: 0 0 40px 40px #f47174 inset;
+		color: #fff;
+	}
+	#light{
+		margin-left: 472px;
+	}
+	</style>
+</head>
+<body>
+	<div class="conta">
+<div class="Clock" id="clock">
+	<div class="center-circle"></div>
+	<div class="hand hour" id="hourHand"></div>
+	<div class="hand min" id="minHand"></div>
+	<div class="hand sec" id="secHand"></div>
+	<div class="num num1">1</div>
+	<div class="num num2">2</div>
+	<div class="num num3">3</div>
+	<div class="num num4">4</div>
+	<div class="num num5">5</div>
+	<div class="num num6">6</div>
+	<div class="num num7">7</div>
+	<div class="num num8">8</div>
+	<div class="num num9">9</div>
+	<div class="num num10">10</div>
+	<div class="num num11">11</div>
+	<div class="num num12">12</div>
+</div>
+</div>
+<button onclick="lightMode()" id="light">Light Mode</button>
+<button onclick="darkMode()" id="dark">Day Mode</button>
+<script type="text/javascript">
+	const hourHand = document.querySelector('.hour');
+	const minHand = document.querySelector('.min');
+	const secHand = document.querySelector('.sec');
+	setInterval(function(){
+		const deg = 6;
+	const d = new Date();
+	const hour = d.getHours() * 30;
+	const minute = d.getMinutes() * deg;
+	const second = d.getSeconds() * deg;
+
+	hourHand.style.transform = `rotateZ(${hour+(minute/12)}deg)`;
+	minHand.style.transform = `rotateZ(${minute}deg)`;
+	secHand.style.transform = `rotateZ(${second}deg)`;
+	},1);
+</script>
+</body>
+</html>
